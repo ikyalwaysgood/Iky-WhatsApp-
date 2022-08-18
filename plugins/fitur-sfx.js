@@ -11,32 +11,24 @@ let urut = text.split`|`
   
 /*MyInstans*/
 if (command == 'sfx') {
-if (!args[0] || !args[1]) throw `Contoh penggunaan ${usedPrefix}${command} 2 9
-*ket:*
-2 : page site
-9 : urutan sound
-
-_Batas page ± 500_
-_Batas urutan 10_
-`
+if (!args[0]) throw `Contoh penggunaan ${usedPrefix}${command} 2`
 try {
-    let gas = await fetch(`http://www.myinstants.com/api/v1/instants/?format=json&page=${args[0]}`)
+  let gas = await fetch(`http://www.myinstants.com/api/v1/instants/?format=json&page=${args[0]}`)
     let json = await gas.json()
     let hasil = json.results
-    let ke = args[1]
-    let sound = hasil[ke].sound
-    await conn.sendFile(m.chat, sound, ke + '.mp3', '', m, null, { fileLength: fsizedoc, seconds: fsizedoc, contextInfo: {
-            mimetype: 'audio/mp4',
-          externalAdReply :{
-    mediaUrl: sig,
-    mediaType: 2,
-    description: wm, 
-    title: '👋 Hai, ' + name + ' ' + ucapan,
-    body: botdate,
-    thumbnail: await(await fetch(pp)).buffer(),
-    sourceUrl: sound
-     }}
-  })
+	let msg = (Object.entries(hasil).map(([name, sound]) => { return { name, ...sound } })).map(v => v.sound )
+	
+	let row = Object.keys(msg).map((v, index) => ({
+		title: htjava + ' Sound No.' + index,
+		description: 'JUST DO IT!',
+		rowId: usedPrefix + 'get ' + msg[v]
+	}))
+	let button = {
+		buttonText: `☂️ SFX Disini ☂️`,
+		description: `⚡ Silakan pilih SFX di tombol di bawah...\n*Teks yang anda kirim:* ${text}\n\nKetik ulang *${usedPrefix + command}* teks anda untuk mengubah teks lagi`,
+		footerText: wm
+	}
+	return await conn.sendListM(m.chat, button, row, m)
 } catch (e) {
 return m.reply('Error kan')
 }
@@ -62,27 +54,26 @@ return `
 
 /*FreeSound*/
 if (command == 'sfx3') {
-if (!one || !two) throw `Contoh penggunaan ${usedPrefix}${command} drum|2
+if (!text) throw `Contoh penggunaan ${usedPrefix}${command} drum
 *ket:*
 drum : nama sound
-2 : urutan sound
-
-_Ada Batas urutan_
 `
-    let gas = await fetch(`https://freesound.org/apiv2/search/text/?format=json&query=${one}&token=TJEbxX84wKTySiEtUPxhm8b2WCi5Izak0h9nNDbO`)
+    let gas = await fetch(`https://freesound.org/apiv2/search/text/?format=json&query=${text}&token=TJEbxX84wKTySiEtUPxhm8b2WCi5Izak0h9nNDbO`)
     let json = await gas.json()
     let hasil = json.results
-    let id = hasil[two].id
-    let name = hasil[two].name
-    let license = hasil[two].license
-    let username = hasil[two].username
-let teks = `*Name :* ${name}
-*ID :* ${id}
-*license :* ${license}
-*username :* ${username}`
-  await conn.sendButton(m.chat, teks, wm, null, [
-                ['Detail', `${usedPrefix}sfx4 ${id}`]
-            ], m)
+            let msg = (Object.entries(hasil).map(([id]) => { return { id } })).map(v => v.id )
+	
+	let row = Object.keys(msg).map((v, index) => ({
+		title: htjava + ' Sound No.' + index,
+		description: 'JUST DO IT!',
+		rowId: usedPrefix + 'sfx4 ' + msg[v]
+	}))
+	let button = {
+		buttonText: `☂️ SFX Disini ☂️`,
+		description: `⚡ Silakan pilih SFX di tombol di bawah...\n*Teks yang anda kirim:* ${text}\n\nKetik ulang *${usedPrefix + command}* teks anda untuk mengubah teks lagi`,
+		footerText: wm
+	}
+	return await conn.sendListM(m.chat, button, row, m)
 }
 
 if (command == 'sfx4') {
