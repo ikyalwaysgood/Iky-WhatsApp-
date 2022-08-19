@@ -13,6 +13,7 @@ let em = res.emoji
 	{title: `${htjava} Bc Join ${em.getRandom()}`, rowId: `${usedPrefix + command} bcjoin`},
 	{title: `${htjava} Simi ${em.getRandom()}`, rowId: `${usedPrefix + command} simi`},
 	{title: `${htjava} Anti Spam ${em.getRandom()}`, rowId: `${usedPrefix + command} antispam`},
+	{title: `${htjava} Anti Call ${em.getRandom()}`, rowId: `${usedPrefix + command} anticall`},
 	{title: `${htjava} Anti Link Wa ${em.getRandom()}`, rowId: `${usedPrefix + command} antilinkwa`},
 	{title: `${htjava} Anti Link Tik ${em.getRandom()}`, rowId: `${usedPrefix + command} antilinktik`},
 	{title: `${htjava} Anti Link Yt ${em.getRandom()}`, rowId: `${usedPrefix + command} antilinkyt`},
@@ -307,6 +308,15 @@ const listMessage = {
          }
        }
        chat.antiSpam = isEnable
+       break
+       case 'anticall':
+       if (m.isGroup) {
+         if (!(isAdmin || isOwner)) {
+           global.dfail('admin', m, conn)
+           throw false
+         }
+       }
+       chat.antiCall = isEnable
        break
      case 'autolevelup':
        isUser = true
