@@ -406,29 +406,20 @@ let caption = `*Result:* ${x}`
 }
 
 if (command == 'tenor') {
-if (!text) throw `Gunakan contoh ${usedPrefix + command} spongebob`
+if (!text) throw `Gunakan contoh ${usedPrefix + command} hello`
 
-	const sections = [
-    {
-	title: htki + ' Theme ' + htka,
-	rows: [
-	{title: "1 Aja banh", rowId: usedPrefix + 'gettenor ' + text + '|1'},
-	{title: "2 Aja banh", rowId: usedPrefix + 'gettenor ' + text + '|2'},
-	{title: "3 Aja banh", rowId: usedPrefix + 'gettenor ' + text + '|3'},
-	{title: "4 Aja banh", rowId: usedPrefix + 'gettenor ' + text + '|4'},
-	{title: "5 Aja banh", rowId: usedPrefix + 'gettenor ' + text + '|5'}
-	]
-    }
-]
-
-const listMessage = {
-  text: `⚡ Silakan pilih tema di tombol di bawah...\n*Teks yang anda kirim:* ${text}\n\nKetik ulang *${usedPrefix + command}* teks anda untuk mengubah teks lagi`,
-  footer: global.wm,
-  title: `⎔───「 ${command} 」───⎔`,
-  buttonText: `☂️ Tema Disini ☂️`,
-  sections
-}
-conn.sendMessage(m.chat, listMessage, {quoted: fgif })
+let lis = ["1","2","3","4","5","6","7","8","9"]
+let row = Object.keys(lis).map((v, index) => ({
+		title: htjava + ' ' + lis[v] + ' Sticker',
+		description: 'By ' + wm,
+		rowId: usedPrefix + 'gettenor ' + text + '|' + lis[v]
+	}))
+	let button = {
+		buttonText: `☂️ Tema Disini ☂️`,
+		description: `⚡ Silakan pilih tema di tombol di bawah...\n*Teks yang anda kirim:* ${text}\n\nKetik ulang *${usedPrefix + command}* teks anda untuk mengubah teks lagi`,
+		footerText: wm
+	}
+	return await conn.sendListM(m.chat, button, row, m)
 }
 
 }
