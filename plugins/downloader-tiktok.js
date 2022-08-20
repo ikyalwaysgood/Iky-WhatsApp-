@@ -17,18 +17,7 @@ let caption = `
 🔗 Url: ${await shortUrl(url)}
 
 Description: ${description}`
-    conn.sendButton(m.chat, caption, nickname + '.mp4', await(await fetch(url)).buffer(), [['🎀 Menu', '/menu']], m, { fileLength: fsizedoc, seconds: fsizedoc, contextInfo: {
-            mimetype: 'video/mp4',
-          externalAdReply :{
-    mediaUrl: sig,
-    mediaType: 2,
-    description: wm, 
-    title: '👋 Hai, ' + name + ' ' + ucapan,
-    body: botdate,
-    thumbnail: await(await fetch(pp)).buffer(),
-    sourceUrl: url
-     }}
-  })
+    conn.sendButtonVid(m.chat, url, caption, author, 'To mp3', '.tomp3', fpayment, adReply)
 }
 
 if (command == 'tiktokwm') {
@@ -36,18 +25,7 @@ let linkwm = `https://api.lolhuman.xyz/api/tiktokwm?apikey=${global.lolkey}&url=
 if (!linkwm) throw 'Can\'t download video!'
 let caption = `
 Url: ${await shortUrl(args[0])}`
-    conn.sendButton(m.chat, caption, args[0] + '.mp4', await(await fetch(linkwm)).buffer(), [['🎀 Menu', '/menu']], m, { fileLength: fsizedoc, seconds: fsizedoc, contextInfo: {
-            mimetype: 'video/mp4',
-          externalAdReply :{
-    mediaUrl: sig,
-    mediaType: 2,
-    description: wm, 
-    title: '👋 Hai, ' + name + ' ' + ucapan,
-    body: botdate,
-    thumbnail: await(await fetch(pp)).buffer(),
-    sourceUrl: linkwm
-     }}
-  })
+    conn.sendButtonVid(m.chat, linkwm, caption, author, 'To mp3', '.tomp3', fpayment, adReply)
 }
 
 if (command == 'tiktoknowm') {
@@ -60,18 +38,7 @@ Title: ${x.title}
 Keyword: ${x.keywords}
 Description: ${x.description}
 Url: ${await shortUrl(x.link)}`
-    conn.sendButton(m.chat, caption, x.title + '.mp4', await(await fetch(x.link)).buffer(), [['🎀 Menu', '/menu']], m, { fileLength: fsizedoc, seconds: fsizedoc, contextInfo: {
-            mimetype: 'video/mp4',
-          externalAdReply :{
-    mediaUrl: sig,
-    mediaType: 2,
-    description: wm, 
-    title: '👋 Hai, ' + name + ' ' + ucapan,
-    body: botdate,
-    thumbnail: await(await fetch(pp)).buffer(),
-    sourceUrl: x.link
-     }}
-  })
+  conn.sendButtonVid(m.chat, x.link, caption, author, 'To mp3', '.tomp3', fpayment, adReply)
 }
 
 if (command == 'tiktokdl') {
@@ -80,18 +47,7 @@ if (!args[0]) throw `Use example ${usedPrefix}${command} https://www.tiktok.com/
     const url = video.no_watermark || video.no_watermark2 || video.no_watermark_raw
     if (!url) throw 'Can\'t download video!'
     let caption = `${htki} ᴛɪᴋᴛᴏᴋ ᴡᴍ ${htka}\n➔ ɴɪᴄᴋɴᴀᴍᴇ ${nickname}\nᴅᴇsᴄʀɪᴘᴛɪᴏɴ:\n${description}`
-    conn.sendButton(m.chat, caption, nickname + '.mp4', await(await fetch(url)).buffer(), [['🎀 Menu', '/menu']], m, { fileLength: fsizedoc, seconds: fsizedoc, contextInfo: {
-            mimetype: 'video/mp4',
-          externalAdReply :{
-    mediaUrl: sig,
-    mediaType: 2,
-    description: wm, 
-    title: '👋 Hai, ' + name + ' ' + ucapan,
-    body: botdate,
-    thumbnail: await(await fetch(pp)).buffer(),
-    sourceUrl: url
-     }}
-  })
+  conn.sendButtonVid(m.chat, url, caption, author, 'To mp3', '.tomp3', fpayment, adReply)
 }
 
 }

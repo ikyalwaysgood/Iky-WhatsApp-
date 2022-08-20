@@ -9,20 +9,9 @@ if (!args[1]) return conn.sendButton(m.chat, htki + ' SMULE ' + htka, null, null
 let res = await fetch(`https://api.lolhuman.xyz/api/smule?apikey=${global.lolkey}&url=${args[1]}`)
     let x = await res.json()
   if (args[1] == 'video') {
-    await conn.sendButton(m.chat, `*${htki} SMULE ${htka}*
+    await conn.sendButtonVid(m.chat, x.result.video, `*${htki} SMULE ${htka}*
 *title:* ${x.result.title}
-    `, x.result.title + '.mp4', await(await fetch(x.result.video)).buffer(), [['🎀 Menu', '/menu']], m, { fileLength: fsizedoc, seconds: fsizedoc, contextInfo: {
-            mimetype: 'video/mp4',
-          externalAdReply :{
-    mediaUrl: sig,
-    mediaType: 2,
-    description: wm, 
-    title: '👋 Hai, ' + name + ' ' + ucapan,
-    body: botdate,
-    thumbnail: await(await fetch(pp)).buffer(),
-    sourceUrl: x.result.video
-     }}
-  })
+    `, author, 'To mp3', '.tomp3', fpayment, adReply)
   }
   if (args[1] == 'audio') {
     await conn.sendFile(m.chat, x.result.audio, 'audio.mp3', '', m, null, { fileLength: fsizedoc, seconds: fsizedoc, contextInfo: {

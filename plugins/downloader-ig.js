@@ -10,18 +10,10 @@ let name = await conn.getName(who)
         .catch(async _ => await instagramdlv2(args[0]))
         .catch(async _ => await instagramdlv3(args[0]))
         .catch(async _ => await instagramdlv4(args[0]))
-    for (const { url } of results) await conn.sendButton(m.chat, wm, bottime, url, [['🎀 Menu', '/menu']], m, { fileLength: fsizedoc, seconds: fsizedoc, contextInfo: {
-            mimetype: 'video/mp4',
-          externalAdReply :{
-    mediaUrl: sig,
-    mediaType: 2,
-    description: wm, 
-    title: '👋 Hai, ' + name + ' ' + ucapan,
-    body: botdate,
-    thumbnail: await(await fetch(pp)).buffer(),
-    sourceUrl: url
-     }}
-  })
+    for (let { url } in results) await conn.sendButtonVid(m.chat, url, `*${htki} IG ${htka}*
+━━━━━•─────────────── 
+       ⇆ㅤ◁ㅤ ❚❚ㅤ ▷ㅤ↻`, author, 'To mp3', '.tomp3', fpayment, adReply)
+  
 }
 handler.help = ['ig'].map(v => v + ' <url>')
 handler.tags = ['downloader']

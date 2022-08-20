@@ -17,20 +17,22 @@ try {
     } catch {
     let res = await fetch(`https://api.lolhuman.xyz/api/mediafire?apikey=${global.lolkey}&url=${args[0]}`)
     let x = await res.json()
-    conn.sendButton(m.chat, `*${htki} mediafire ${htka}*
+    let caption = `*${htki} mediafire ${htka}*
 *title:* ${x.result.filename}
 *filetype:* ${x.result.filetype}
 *filesize:* ${x.result.filesize}
 *uploaded:* ${x.result.uploaded}
-    `, wm, null, [['Get', `.get ${x.result.link}`]],m)
+    `
+    conn.sendButtonImg(m.chat, logo, caption, author, 'G E T', '.get ' + x.result.link, fpayment, adReply)
     
     let res = await fetch(`https://api.lolhuman.xyz/api/zippyshare?apikey=${global.lolkey}&url=${args[0]}`)
     let x = await res.json()
-    conn.sendButton(m.chat, `*${htki} zippyshare ${htka}*
+    let caption = `*${htki} zippyshare ${htka}*
 *title:* ${x.result.name_file}
 *size:* ${x.result.size}
 *date_upload:* ${x.result.date_upload}
-    `, wm, null, [['Get', `.get ${x.result.download_url}`]],m)
+    `
+    conn.sendButtonImg(m.chat, logo, caption, author, 'G E T', '.get ' + x.result.download_url, fpayment, adReply)
     }
 }
 handler.help = ['mediafire'].map(v => v + ' <url>')
