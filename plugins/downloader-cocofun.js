@@ -9,7 +9,7 @@ if (!args[1]) return conn.sendButton(m.chat, htki + ' COCOFUN ' + htka, null, nu
 let res = await fetch(`https://api.lolhuman.xyz/api/cocofun?apikey=${global.lolkey}&url=${args[0]}`)
     let x = await res.json()
   if (args[1] == 'withwm') {
-    conn.sendButtonVid(m.chat, await(await fetch(x.result.withwm)).buffer(), `*${htki} COCOFUN ${htka}*
+    conn.sendButtonVid(m.chat, x.result.withwm, `*${htki} COCOFUN ${htka}*
 *title:* ${x.result.title}
 *tag:* ${x.result.tag}
 *likes:* ${x.result.likes}
@@ -20,7 +20,7 @@ let res = await fetch(`https://api.lolhuman.xyz/api/cocofun?apikey=${global.lolk
 *dislike:* ${x.result.dislike}`, x.result.title + '.mp4', 'To mp3', '.tomp3', fpayment, adReply)
   }
   if (args[1] == 'nowm') {
-    conn.sendButtonVid(m.chat, await(await fetch(x.result.nowm)).buffer(), `*${htki} COCOFUN ${htka}*
+    conn.sendButtonVid(m.chat, x.result.nowm, `*${htki} COCOFUN ${htka}*
 *title:* ${x.result.title}
 *tag:* ${x.result.tag}
 *likes:* ${x.result.likes}
