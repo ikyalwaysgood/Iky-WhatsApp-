@@ -16,12 +16,10 @@ try {
   let gas = await fetch(`http://www.myinstants.com/api/v1/instants/?format=json&page=${args[0]}`)
     let json = await gas.json()
     let hasil = json.results
-	let msg = (Object.entries(hasil).map(([name, sound]) => { return { name, ...sound } })).map(v => v.sound )
-	
-	let row = Object.keys(msg).map((v, index) => ({
-		title: htjava + ' Sound No.' + index,
-		description: 'JUST DO IT!',
-		rowId: usedPrefix + 'get ' + msg[v]
+	let row = Object.values(hasil).map((v, index) => ({
+		title: '📌 ' + v.name,
+		description: '\n*Color:* ' + v.color + '\n*Slug:* ' + v.slug + '\n*Description:* ' + v.description + '\n*Image:* ' + v.image,
+		rowId: usedPrefix + 'get ' + v.sound
 	}))
 	let button = {
 		buttonText: `☂️ SFX Disini ☂️`,
@@ -34,26 +32,8 @@ return m.reply('Error kan')
 }
 }
 
-if (command == 'sfx2') {
-if (!text) throw `Contoh:
-${usedPrefix + command} 10`
-let f = await fetch(`http://www.myinstants.com/api/v1/instants/?format=json&page=${text}`)
-let xx = await f.json()
-let v = xx.results
-let teks = v.map(v => {
-return `
-*Name :* ${v.name}
-*Sound :* ${v.sound}
-      `.trim()
-  }).filter(v => v).join('\n\n▣═━–〈 *SEARCH* 〉–━═▣\n\n')
-  //m.reply(teks)
-  await conn.sendButton(m.chat, teks, wm, null, [
-                ['Search!', `${usedPrefix + command}`]
-            ], m)
-}
-
 /*FreeSound*/
-if (command == 'sfx3') {
+if (command == 'sfx2') {
 if (!text) throw `Contoh penggunaan ${usedPrefix}${command} drum
 *ket:*
 drum : nama sound
@@ -61,12 +41,10 @@ drum : nama sound
     let gas = await fetch(`https://freesound.org/apiv2/search/text/?format=json&query=${text}&token=TJEbxX84wKTySiEtUPxhm8b2WCi5Izak0h9nNDbO`)
     let json = await gas.json()
     let hasil = json.results
-            let msg = (Object.entries(hasil).map(([id]) => { return { id } })).map(v => v.id )
-	
-	let row = Object.keys(msg).map((v, index) => ({
-		title: htjava + ' Sound No.' + index,
-		description: 'JUST DO IT!',
-		rowId: usedPrefix + 'sfx4 ' + msg[v]
+	let row = Object.values(hasil).map((v, index) => ({
+		title: '📌 ' + v.name,
+		description: '\n*ID:* ' + v.id + '\n*LICENSE:* ' + v.license + '\n*USERNAME:* ' + v.username + '\n*TAGS:* ' + Array.from(v.tags),
+		rowId: usedPrefix + 'sfx3 ' + v.id
 	}))
 	let button = {
 		buttonText: `☂️ SFX Disini ☂️`,
@@ -76,7 +54,7 @@ drum : nama sound
 	return await conn.sendListM(m.chat, button, row, m)
 }
 
-if (command == 'sfx4') {
+if (command == 'sfx3') {
 if (!text) throw `Contoh:
 ${usedPrefix + command} 1234`
 let f = await fetch(`https://freesound.org/apiv2/sounds/${text}/?format=json&token=TJEbxX84wKTySiEtUPxhm8b2WCi5Izak0h9nNDbO`)
@@ -113,7 +91,7 @@ let teks = `*Name :* ${xx[1][0].name}
 
 
 }
-handler.command = handler.help = ['sfx', 'sfx2', 'sfx3', 'sfx4', 'smap']
+handler.command = handler.help = ['sfx', 'sfx2', 'sfx3', 'smap']
 handler.tags = ['audio']
 
 export default handler

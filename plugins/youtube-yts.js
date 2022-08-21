@@ -1,30 +1,22 @@
 import { youtubeSearch } from '@bochilteam/scraper'
 
 let handler = async(m, { conn, usedPrefix, text, args, command }) => {
-let fdoc = {quoted:{key : {participant : '0@s.whatsapp.net'},message: {documentMessage: {title: `${command}`}}}}
-let imgr = flaaa.getRandom()
+let name = await conn.getName(m.sender)
 
   if (!text) throw 'Cari apa?'
-  const { video, channel } = await youtubeSearch(text)
-  let teks = [...video, ...channel].map(v => {
-    switch (v.type) {
-      case 'video': return `
-📌 *${v.title}* (${v.url})
-⌚ Duration: ${v.durationH}
-⏲️ Uploaded ${v.publishedTime}
-👁️ ${v.view} views
-      `.trim()
-      case 'channel': return `
-📌 *${v.channelName}* (${v.url})
-🧑‍🤝‍🧑 _${v.subscriberH} (${v.subscriber}) Subscriber_
-🎥 ${v.videoCount} video
-`.trim()
-    }
-  }).filter(v => v).join('\n\n▣═━–〈 *YT SEARCH* 〉–━═▣\n\n')
-  //m.reply(teks)
-  await conn.sendButton(m.chat, teks, wm, `${imgr + command}`, [
-                ['Youtube Search🔎', `${usedPrefix + command} ${text}`]
-            ], m, fdoc)
+  let cari = await youtubeSearch(`${text}`)
+    let dapet = cari.video
+	let row = Object.values(dapet).map((v, index) => ({
+		title: htjava + '📌 ' + v.title,
+		description: '\n⌚ Duration: ' + v.durationH + '\n⏲️ Uploaded: ' + v.publishedTime + '\n👁️ Views: ' + v.view,
+		rowId: usedPrefix + 'play ' + v.url
+	}))
+	let button = {
+		buttonText: `☂️ YouTube Search Disini ☂️`,
+		description: `⚡ Silakan pilih YouTube Search di tombol di bawah...\n*Teks yang anda kirim:* ${text}\n\nKetik ulang *${usedPrefix + command}* teks anda untuk mengubah teks lagi`,
+		footerText: wm
+	}
+	return await conn.sendListM(m.chat, button, row, m)
 }
 handler.help = ['', 'earch'].map(v => 'yts' + v + ' <pencarian>')
 handler.tags = ['tools']
