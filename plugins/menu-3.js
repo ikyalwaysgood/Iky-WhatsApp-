@@ -58,15 +58,15 @@ let handler = async (m, { conn, command, groupMetadata, usedPrefix: _p, __dirnam
       }
      }
      let math = max - xp
-     let ktnya = [`\n\n\n ${em.getRandom()} Hai *${name}* : _Mungkin menu ini bermanfaat?_`,
- `\n\n\n ${em.getRandom()} Hai *${name}* : _Terimakasih sudah menggunakan bot ini_`,
- `\n\n\n ${em.getRandom()} Hai *${name}* : _Semoga gak erorr_`,
- `\n\n\n ${em.getRandom()} Hai *${name}* : _Jika lama kemungkiman erorr atau delay_`,
- `\n\n\n ${em.getRandom()} Hai *${name}* : _Menampilkan menu_`,
- `\n\n\n ${em.getRandom()} Hai *${name}* : _Wait..._`,
- `\n\n\n ${em.getRandom()} Hai *${name}* : _Dua tiga kucing berlari_`,
- `\n\n\n ${em.getRandom()} Hai *${name}* : _Bentar bang akan kutampilkan menunya_`,
- `\n\n\n ${em.getRandom()} Hai *${name}* : _Prosess..._`]
+     let ktnya = [`\n\n\n ${em.getRandom()} Hai *${name}* : \n${htjava} _Mungkin menu ini bermanfaat?_`,
+ `\n\n\n ${em.getRandom()} Hai *${name}* : \n${htjava} _Terimakasih sudah menggunakan bot ini_`,
+ `\n\n\n ${em.getRandom()} Hai *${name}* : \n${htjava} _Semoga gak erorr_`,
+ `\n\n\n ${em.getRandom()} Hai *${name}* : \n${htjava} _Jika lama kemungkiman erorr atau delay_`,
+ `\n\n\n ${em.getRandom()} Hai *${name}* : \n${htjava} _Menampilkan menu_`,
+ `\n\n\n ${em.getRandom()} Hai *${name}* : \n${htjava} _Wait..._`,
+ `\n\n\n ${em.getRandom()} Hai *${name}* : \n${htjava} _Dua tiga kucing berlari_`,
+ `\n\n\n ${em.getRandom()} Hai *${name}* : \n${htjava} _Bentar bang akan kutampilkan menunya_`,
+ `\n\n\n ${em.getRandom()} Hai *${name}* : \n${htjava} _Prosess..._`]
  let ktx = ktnya.getRandom()
      let tags
      let teks = `${args[0]}`.toLowerCase()
@@ -287,7 +287,7 @@ const listMessage = {
   sections
 }
   if (teks == '404') {
-  	return conn.sendMessage(m.chat, listMessage, { quoted: fgif })
+  	return conn.sendMessage(m.chat, listMessage, { quoted: fakes })
     }
     
     let _package = JSON.parse(await promises.readFile(join(__dirname, '../package.json')).catch(_ => ({}))) || {}
@@ -361,7 +361,7 @@ const listMessage = {
           ...help.filter(menu => menu.tags && menu.tags.includes(tag) && menu.help).map(menu => {
             return menu.help.map(help => {
               return body.replace(/%cmd/g, menu.prefix ? help : '%p' + help)
-                .replace(/%islimit/g, menu.limit ? '🅛' : '')
+                .replace(/%islimit/g, menu.limit ? 'Ⓛ' : '')
                 .replace(/%isPremium/g, menu.premium ? '🅟' : '')
                 .trim()
             }).join('\n')
@@ -388,7 +388,7 @@ const listMessage = {
       readmore: readMore
     }
     text = text.replace(new RegExp(`%(${Object.keys(replace).sort((a, b) => b.length - a.length).join`|`})`, 'g'), (_, name) => '' + replace[name])
-    conn.sendHydrated(m.chat, text.trim(), wm + '\n\n' + botdate, hwaifu.getRandom(), gcwangsaf, em.getRandom() + ' Hinata Group', who.split`@`[0], em.getRandom() + ' Your Number', [
+    conn.sendHydrated(m.chat, text.trim(), wm + '\n\n' + botdate, knimg, gcwangsaf, em.getRandom() + ' Hinata Group', who.split`@`[0], em.getRandom() + ' Your Number', [
       ['🎀 Menu', '/menu'],
       ['🪄 Owner', '/owner'],
       ['🔖 Test', '/ping']

@@ -17,7 +17,7 @@ let res = await fetch(`https://api.lolhuman.xyz/api/cocofun?apikey=${global.lolk
 *views:* ${x.result.views}
 *uploader:* ${x.result.uploader}
 *duration:* ${x.result.duration}
-*dislike:* ${x.result.dislike}`, x.result.title + '.mp4', 'To mp3', '.tomp3', fpayment, adReply)
+*dislike:* ${x.result.dislike}`, x.result.title + '.mp4', 'To mp3', '.tomp3', fakes, adReply)
   }
   if (args[1] == 'nowm') {
     conn.sendButtonVid(m.chat, x.result.nowm, `*${htki} COCOFUN ${htka}*
@@ -28,7 +28,7 @@ let res = await fetch(`https://api.lolhuman.xyz/api/cocofun?apikey=${global.lolk
 *views:* ${x.result.views}
 *uploader:* ${x.result.uploader}
 *duration:* ${x.result.duration}
-*dislike:* ${x.result.dislike}`, x.result.title + '.mp4', 'To mp3', '.tomp3', fpayment, adReply)
+*dislike:* ${x.result.dislike}`, x.result.title + '.mp4', 'To mp3', '.tomp3', fakes, adReply)
   }
   }
 handler.help = ['cocofun'].map(v => v + ' <url>')

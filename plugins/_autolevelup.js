@@ -1,7 +1,7 @@
 import { canLevelUp, xpRange } from '../lib/levelling.js'
 import { levelup } from '../lib/canvas.js'
 
-export function before(m, { conn }) {
+export async function before(m, { conn }) {
     let user = global.db.data.users[m.sender]
     if (!user.autolevelup)
         return !0
@@ -28,12 +28,16 @@ Kurang *${max - user.exp}* lagi! ✨
 
 *Note:* _Semakin sering berinteraksi dengan bot Semakin Tinggi level kamu_
 `.trim()
-            
+            let knights = await(await import('knights-canvas'))
+            let image = await new knights.Up()
+    .setAvatar(hwaifu.getRandom())
+    .toAttachment();
+  let data = image.toBuffer();
             try {
             let img = await levelup(teks, user.level)
             conn.sendButton(m.chat, str, botdate, img, [['INVENTORY', '.inv']], m)
             } catch (e) {
-            conn.sendButton(m.chat, str, botdate, hwaifu.getRandom(), [['INVENTORY', '.inv']], m)
+            conn.sendButton(m.chat, str, botdate, data, [['INVENTORY', '.inv']], m)
             }
 
     }

@@ -19,8 +19,30 @@ handler.all = async function (m) {
 		global.doc = pdoc.getRandom()
 		
 		// Fake Random
-        let pft = ["fpayment","ftroli","fkontak","fvn","fvid","ftextt","fliveLoc","fliveLoc2","ftoko","fdocs","fgclink","fgif"]
+        let pft = [fpayment, ftroli, fkontak, fvn, fvid, ftextt, fliveLoc, fliveLoc2, ftoko, fdocs, fgclink, fgif]
 		global.fakes = pft.getRandom()
+		
+		// Fake Knights
+		let knights = await(await import('knights-canvas'))
+		let imagea = await new knights.Jo()
+    .setImage(pp)
+    .toBuild();
+  let dataa = imagea.toBuffer();
+  let imageb = await new knights.Patrick()
+    .setAvatar(pp)
+    .toAttachment();
+  let datab = imageb.toBuffer();
+  let imagec = await new knights.Bonk()
+    .setAvatar1(pp)
+    .setAvatar2(pp)
+    .toBuild();
+  let datac = imagec.toBuffer();
+  let imaged = await new knights.Burn()
+    .setAvatar(pp)
+    .toAttachment();
+  let datad = imaged.toBuffer();
+  let kn =  [dataa, datab, datac, datad]
+  global.knimg = kn.getRandom()
 		
 		// Module 
 		global.fetch = import('node-fetch')
@@ -48,7 +70,7 @@ handler.all = async function (m) {
 				externalAdReply: { // Bagian ini sesuka kalian berkreasi :'v
                     showAdAttribution: true,
 					title: global.ucapan,
-					body: "👋 Hallo " + name,
+					body: "👋 Hay Kak :> " + name,
 					mediaUrl: sgc,
 					description: botdate,
 					previewType: "PHOTO",
@@ -62,7 +84,7 @@ handler.all = async function (m) {
             mediaUrl: sig,
             mediaType: "VIDEO",
             description: "Follow: " + sig,
-            title: wm,
+            title: "👋 Hay Kak :> " + name,
             body: botdate,
             thumbnailUrl: await (await fetch(pp)).buffer(),
             sourceUrl: sgc
@@ -83,7 +105,7 @@ handler.all = async function (m) {
       "requestFrom": "0@s.whatsapp.net",
       "noteMessage": {
         "extendedTextMessage": {
-          "text": "\nHay Kak :> 👋 \n"
+          "text": "👋 Hay Kak :> " + name
         }
       },
       "expiryTimestamp": fsizedoc,
@@ -112,7 +134,7 @@ handler.all = async function (m) {
                             global.fvid = {
             key: {
                  participant : '0@s.whatsapp.net'},
-            message: { "videoMessage": { "title":wm, "h": `Hmm`,'seconds': fsizedoc, 'caption': bottime, 'jpegThumbnail': fs.readFileSync('./thumbnail.jpg')}}
+            message: { "videoMessage": { "title":wm, "h": `Hmm`,'seconds': fsizedoc, 'caption': "👋 Hay Kak :> " + name, 'jpegThumbnail': fs.readFileSync('./thumbnail.jpg')}}
                             }
                             
                
@@ -121,7 +143,7 @@ handler.all = async function (m) {
                  participant : '0@s.whatsapp.net'},
             message: { 
                "extendedTextMessage": {
-                        "text":wm,
+                        "text":"👋 Hay Kak :> " + name,
                         "title": bottime,
                         'jpegThumbnail': fs.readFileSync('./thumbnail.jpg')
                                }
@@ -131,13 +153,13 @@ handler.all = async function (m) {
                   global.fliveLoc = {
             key: {
             participant : '0@s.whatsapp.net'},
-            message: { "liveLocationMessage": { "caption": wm,"h": `${bottime}`, 'jpegThumbnail': fs.readFileSync('./thumbnail.jpg')}}
+            message: { "liveLocationMessage": { "caption": "👋 Hay Kak :> " + name,"h": `${bottime}`, 'jpegThumbnail': fs.readFileSync('./thumbnail.jpg')}}
            }
                
                   global.fliveLoc2 = {
             key: {
             participant : '0@s.whatsapp.net'},
-            message: { "liveLocationMessage": { "title": wm,"h": bottime, 'jpegThumbnail': fs.readFileSync('./thumbnail.jpg')}}
+            message: { "liveLocationMessage": { "title": "👋 Hay Kak :> " + name,"h": bottime, 'jpegThumbnail': fs.readFileSync('./thumbnail.jpg')}}
            }
                
                    global.ftoko = {
@@ -150,7 +172,7 @@ handler.all = async function (m) {
                                "mimetype": "image/jpeg",
                                "jpegThumbnail": fs.readFileSync('./thumbnail.jpg') //Gambarnye
                            },
-                           "title": wm, //Kasih namalu 
+                           "title": "👋 Hay Kak :> " + name, //Kasih namalu 
                            "description": bottime, 
                            "currencyCode": "IDR",
                            "priceAmount1000": fsizedoc,
@@ -181,7 +203,7 @@ handler.all = async function (m) {
                    groupJid: "17608914335-1625305606@g.us",
                    inviteCode: null,
                    groupName: wm, 
-                   caption: bottime, 
+                   caption: "👋 Hay Kak :> " + name, 
                    jpegThumbnail: fs.readFileSync('./thumbnail.jpg')
                }
            }
@@ -192,7 +214,7 @@ handler.all = async function (m) {
                  participant : '0@s.whatsapp.net'},
             message: { 
                         "videoMessage": { 
-                        "title": wm,
+                        "title": "👋 Hay Kak :> " + name,
                         "h": `Hmm`,
                         'seconds': fsizedoc, 
                         'gifPlayback': 'true', 
@@ -201,6 +223,35 @@ handler.all = async function (m) {
                                }
                               }
                              }
+                             global.fimg = {
+            key: {
+                 participant : '0@s.whatsapp.net'},
+            message: {
+    imageMessage: {
+      url: logo,
+      mimetype: 'image/jpeg',
+      fileLength: fsizedoc,
+      height: 306,
+      width: 366,
+      jpegThumbnail: fs.readFileSync('./thumbnail.jpg')
+    }
+  }
+  }
+  global.fimgv = {
+            key: {
+                 participant : '0@s.whatsapp.net'},
+            message: {
+    imageMessage: {
+      url: logo,
+      mimetype: 'image/jpeg',
+      fileLength: fsizedoc,
+      height: 306,
+      width: 366,
+      jpegThumbnail: fs.readFileSync('./thumbnail.jpg'),
+      viewOnce: true
+    }
+  }
+  }
 	}
 }
 
