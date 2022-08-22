@@ -228,7 +228,7 @@ handler.all = async function (m) {
   }
   
   // Fake Random
-        let pft = ["fimg", "fimgv", "fpayment", "ftroli", "fkontak", "fvn", "fvid", "ftextt", "fliveLoc", "fliveLoc2", "ftoko", "fdocs", "fgclink", "fgif"]
+        let pft = [global.fimg, global.fimgv, global.fpayment, global.ftroli, global.fkontak, global.fvn, global.fvid, global.ftextt, global.fliveLoc, global.fliveLoc2, global.ftoko, global.fdocs, global.fgclink, global.fgif]
 		global.fakes = pft.getRandom()
 		
 		// Fake Knights
