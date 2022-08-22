@@ -27,7 +27,6 @@ const listMessage = {
 }
 //
         try {
-        let bhnhabis = await conn.sendButton(m.chat, `*[❗] kamu tidak punya kail pancingan dan umpan 🎣*`, wm, [[`Buy Pancingan`, '.buy pancingan 1'], [`Buy Umpan`, '.buy umpan 1']], m)
                if (/fishing|mancing/i.test(command)) {
           switch (type) {
           
@@ -113,14 +112,14 @@ ${ usedPrefix }cook`
          pengguna.kepiting += kepiting * 1
 
         	  } else m.reply(`You're already fishing, wait until ${timers}`)
-           } else return bhnhabis
+           } else return conn.sendButton(m.chat, `*[❗] kamu tidak punya kail pancingan dan umpan 100 🎣*`, wm, [[`Buy Pancingan`, '.buy pancingan 1'], [`Buy Umpan 100`, '.buy umpan 100']], m)
            break
            
 	          case 'easy':
                                   let _coinesa = (new Date - pengguna.lastmancingeasy)
                                   let coinesa = (28800000 - _coinesa)
                                   let timersa = clockString(coinesa) 
-                                  if (pancingan == 0 || umpan == 0) return bhnhabis
+                                  if (pancingan == 0 || umpan == 0) return conn.sendButton(m.chat, `*[❗] kamu tidak punya kail pancingan dan umpan 100 🎣*`, wm, [[`Buy Pancingan`, '.buy pancingan 1'], [`Buy Umpan 100`, '.buy umpan 100']], m)
                                   if (new Date - pengguna.lastmancingeasy > 28800000) {
                                   if (pengguna.pancingan > 1) {
                                   if (pengguna.umpan > 99) {
@@ -220,7 +219,7 @@ ${ usedPrefix }cook`
                                   let __timerl = (new Date - pengguna.lastmancingeasy)
                                   let _timerl = (28800000 - __timerl)
                                   let timerl = clockString(_timerl) 
-                                  if (pancingan == 0 || umpan == 0) return bhnhabis
+                                  if (pancingan == 0 || umpan == 0) return conn.sendButton(m.chat, `*[❗] kamu tidak punya kail pancingan dan umpan 100 🎣*`, wm, [[`Buy Pancingan`, '.buy pancingan 1'], [`Buy Umpan 100`, '.buy umpan 100']], m)
                                   if (new Date - pengguna.lastmancingeasy > 28800000) {
                                   if (pengguna.pancingan > 2) {
                                   if (pengguna.umpan > 149) {
@@ -320,7 +319,7 @@ ${ usedPrefix }cook`
                                   let __timerh = (new Date - pengguna.lastmancingeasy)
                                   let _timerh = (28800000 - __timerh)
                                   let timerh = clockString(_timerh) 
-                                  if (pancingan == 0 || umpan == 0) return bhnhabis
+                                  if (pancingan == 0 || umpan == 0) return conn.sendButton(m.chat, `*[❗] kamu tidak punya kail pancingan dan umpan 100 🎣*`, wm, [[`Buy Pancingan`, '.buy pancingan 1'], [`Buy Umpan 100`, '.buy umpan 100']], m)
                                   if (new Date - pengguna.lastmancingeasy > 28800000) {
                                   if (pengguna.pancingan > 3) {
                                   if (pengguna.umpan > 199) {
@@ -420,7 +419,7 @@ ${ usedPrefix }cook`
                                   let __timere = (new Date - pengguna.lastmancingeasy)
                                   let _timere = (28800000 - __timere)
                                   let timere = clockString(_timere) 
-                                  if (pancingan == 0 || umpan == 0) return bhnhabis
+                                  if (pancingan == 0 || umpan == 0) return conn.sendButton(m.chat, `*[❗] kamu tidak punya kail pancingan dan umpan 100 🎣*`, wm, [[`Buy Pancingan`, '.buy pancingan 1'], [`Buy Umpan 100`, '.buy umpan 100']], m)
                                   if (new Date - pengguna.lastmancingeasy > 28800000) {
                                   if (pengguna.pancingan > 4) {
                                   if (pengguna.umpan > 249) {

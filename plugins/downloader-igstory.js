@@ -6,28 +6,14 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
     if (!args[0]) throw `uhm.. username nya mana?\n\ncontoh:\n\n${usedPrefix + command} rasel.ganz`
     if (args[0].startsWith('http') || args[0].startsWith('@')) throw `username salah\n\ncontoh: *${usedPrefix}${command} the.sad.boy01*`
     try {
-    await m.reply(wait)
-    await conn.reply(m.chat, `Downloading ig story ${args[0]}`, 0, {
-    contextInfo: { mentionedJid: [m.sender],
-    externalAdReply :{
-    mediaUrl: sig,
-    mediaType: 2,
-    description: author, 
-    title: ucapan,
-    body: wm, //`${fileSizeH}`,
-    thumbnail: await(await fetch(logo)).buffer(),
-    sourceUrl: sgc
-     }}+
-    })
-    //const res = await fetch(API('hardianto', '/api/download/igstory', { username: args[0] }, 'apikey'))
-    const res = await fetch(`https://hardianto.xyz/api/download/igstory?username=${args[0]}&apikey=hardianto`)
+        const res = await fetch(`https://hardianto.xyz/api/download/igstory?username=${args[0]}&apikey=hardianto`)
     var anu = await res.json()
     var anuku = anu.medias
     for (let { url, preview } of anuku) 
     conn.sendMedia(m.chat, url, null, {mentions: [m.sender], jpegThumbnail: await(await fetch(preview)).buffer(), caption: `🚀 *Link:* ${await(await axios.get(`https://tinyurl.com/api-create.php?url=${url}`)).data}`})
     } catch {
         try {
-    const res2 = await scrape.igstory(args[0]).catch(async _=> await yzu.igstory(args[0]))
+    const res2 = await igstory(args[0])
     for ( const { downloadUrl, url, preview, type, fileType } of res2 )
     conn.sendMedia(m.chat, url, null, { mentions: [m.sender], jpegThumbnail: await(await fetch(preview)).buffer(), caption: `🚀 *Link:* ${await(await axios.get(`https://tinyurl.com/api-create.php?url=${url}`)).data}`})
     } catch {
@@ -43,7 +29,7 @@ handler.limit = true
 
 export default handler
 
-function igstory(username) {
+async function igstory(username) {
     return new Promise(async (resolve, reject) => {
         axios.request({
             url: 'https://www.instagramsave.com/instagram-story-downloader.php',

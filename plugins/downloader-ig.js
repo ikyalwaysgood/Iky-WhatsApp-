@@ -6,19 +6,6 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
  if (!args[0]) throw `uhm.. url nya mana?\n\ncontoh:\n${usedPrefix + command} https://www.instagram.com/p/CH1A1c9J5pY/?utm_medium=copy_link`
  if (args[0].startsWith('https://instagram.com/stories')) throw `sepertinya kamu menggunakan link story, untuk mendownload Instagram Story silahkan gunakan command di bawah\n\n*${usedPrefix}instagramstory <username>*`
  if (!args[0].match(/(https|http):\/\/www.instagram.com\/(p|reel|tv)/gi)) throw `url salah, perintah ini untuk mengunduh post/reel/tv`
-   await m.reply(wait)
-   await conn.reply(m.chat, 'Downloading media from Instagram', 0, {
-   contextInfo: { mentionedJid: [m.sender],
-    externalAdReply :{
-    mediaUrl: sig,
-    mediaType: 2,
-    description: author, 
-    title: ucapan,
-    body: wm, //`${fileSizeH}`,
-    thumbnail: await(await fetch(logo)).buffer(),
-    sourceUrl: sgc
-     }}
-   })
    try {
    var a = await instagramdl(args[0])
    let urla = a[0].url

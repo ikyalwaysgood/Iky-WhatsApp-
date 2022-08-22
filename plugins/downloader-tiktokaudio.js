@@ -1,20 +1,8 @@
 import fetch from 'node-fetch'
+import axios from "axios"
 let handler = async (m, { conn, args }) => {
   if (!args[0]) throw 'Uhm...url nya mana?'
  let chat = global.db.data.chats[m.chat]
-    m.reply(wait)
-await conn.reply(m.chat, `Downloading media from Tiktok`, 0, {
-  contextInfo: { mentionedJid: [m.sender],
-    externalAdReply :{
-    mediaUrl: sig,
-    mediaType: 2,
-    description: author , 
-    title: ucapab,
-    body: wm, //`${fileSizeH}`,
-    thumbnail: await(await fetch(logo)).buffer(),
-    sourceUrl: sgc
-     }}
-  })
     let url = `https://api.lolhuman.xyz/api/tiktokwm?apikey=${global.lolkey}&url=${args[0]}`
 let txt = `🚀 *Link:* ${await(await axios.get(`https://tinyurl.com/api-create.php?url=${args[0]}`)).data}` 
     await conn.sendFile(m.chat, `https://api.lolhuman.xyz/api/tiktokwm?apikey=${global.lolkey}&url=${args[0]}`, 'tiktokaudio.mp3', `
