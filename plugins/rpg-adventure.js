@@ -1,7 +1,7 @@
 import fetch from 'node-fetch'
 
 const cooldown = 300000
-let handler = async (m, { usedPrefix }) => {
+let handler = async (m, { usedPrefix, command }) => {
 let imgr = flaaa.getRandom()
     let user = global.db.data.users[m.sender]
     let timers = (cooldown - (new Date - user.lastadventure))
