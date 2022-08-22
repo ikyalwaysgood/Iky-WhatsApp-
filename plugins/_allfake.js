@@ -18,32 +18,6 @@ handler.all = async function (m) {
         let pdoc = ["application/vnd.openxmlformats-officedocument.presentationml.presentation","application/vnd.openxmlformats-officedocument.spreadsheetml.sheet","application/vnd.openxmlformats-officedocument.wordprocessingml.document","application/vnd.ms-excel","application/msword","application/pdf","text/rtf"]
 		global.doc = pdoc.getRandom()
 		
-		// Fake Random
-        let pft = [fpayment, ftroli, fkontak, fvn, fvid, ftextt, fliveLoc, fliveLoc2, ftoko, fdocs, fgclink, fgif]
-		global.fakes = pft.getRandom()
-		
-		// Fake Knights
-		let knights = await(await import('knights-canvas'))
-		let imagea = await new knights.Jo()
-    .setImage(pp)
-    .toBuild();
-  let dataa = imagea.toBuffer();
-  let imageb = await new knights.Patrick()
-    .setAvatar(pp)
-    .toAttachment();
-  let datab = imageb.toBuffer();
-  let imagec = await new knights.Bonk()
-    .setAvatar1(pp)
-    .setAvatar2(pp)
-    .toBuild();
-  let datac = imagec.toBuffer();
-  let imaged = await new knights.Burn()
-    .setAvatar(pp)
-    .toAttachment();
-  let datad = imaged.toBuffer();
-  let kn =  [dataa, datab, datac, datad]
-  global.knimg = kn.getRandom()
-		
 		// Module 
 		global.fetch = import('node-fetch')
 		global.bochil = import('@bochilteam/scraper')
@@ -252,6 +226,33 @@ handler.all = async function (m) {
     }
   }
   }
+  
+  // Fake Random
+        let pft = ["fimg", "fimgv", "fpayment", "ftroli", "fkontak", "fvn", "fvid", "ftextt", "fliveLoc", "fliveLoc2", "ftoko", "fdocs", "fgclink", "fgif"]
+		global.fakes = pft.getRandom()
+		
+		// Fake Knights
+		let knights = await(await import('knights-canvas'))
+		let imagea = await new knights.Jo()
+    .setImage(pp)
+    .toBuild();
+  let dataa = imagea.toBuffer();
+  let imageb = await new knights.Patrick()
+    .setAvatar(pp)
+    .toAttachment();
+  let datab = imageb.toBuffer();
+  let imagec = await new knights.Bonk()
+    .setAvatar1(pp)
+    .setAvatar2(pp)
+    .toBuild();
+  let datac = imagec.toBuffer();
+  let imaged = await new knights.Burn()
+    .setAvatar(pp)
+    .toAttachment();
+  let datad = imaged.toBuffer();
+  let kn =  [dataa, datab, datac, datad]
+  global.knimg = kn.getRandom()
+		
 	}
 }
 
