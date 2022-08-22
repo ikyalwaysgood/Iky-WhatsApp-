@@ -1,23 +1,68 @@
-import { instagramdl, instagramdlv2, instagramdlv3, instagramdlv4 } from '@bochilteam/scraper'
-import fetch from 'node-fetch'
-
+import { instagramdl, instagramdlv2, instagramdlv3 } from '@bochilteam/scraper'
+import { igdl } from '../lib/scrape.js'
 let handler = async (m, { conn, args, usedPrefix, command }) => {
-let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender
-let pp = await conn.profilePictureUrl(who).catch(_ => hwaifu.getRandom())
-let name = await conn.getName(who)
-    if (!args[0]) throw `Use example ${usedPrefix}${command} https://www.instagram.com/p/ByxKbUSnubS/?utm_source=ig_web_copy_link`
-    const results = await instagramdl(args[0])
-        .catch(async _ => await instagramdlv2(args[0]))
-        .catch(async _ => await instagramdlv3(args[0]))
-        .catch(async _ => await instagramdlv4(args[0]))
-    for (let { url } in results) await conn.sendButtonVid(m.chat, url, `*${htki} IG ${htka}*
-━━━━━•─────────────── 
-       ⇆ㅤ◁ㅤ ❚❚ㅤ ▷ㅤ↻`, author, 'To mp3', '.tomp3', fpayment, adReply)
-  
+ if (!args[0]) throw `uhm.. url nya mana?\n\ncontoh:\n${usedPrefix + command} https://www.instagram.com/p/CH1A1c9J5pY/?utm_medium=copy_link`
+ if (args[0].startsWith('https://instagram.com/stories')) throw `sepertinya kamu menggunakan link story, untuk mendownload Instagram Story silahkan gunakan command di bawah\n\n*${usedPrefix}instagramstory <username>*`
+ if (!args[0].match(/(https|http):\/\/www.instagram.com\/(p|reel|tv)/gi)) throw `url salah, perintah ini untuk mengunduh post/reel/tv`
+   await m.reply(wait)
+   await conn.reply(m.chat, 'Downloading media from Instagram', 0, {
+   contextInfo: { mentionedJid: [m.sender],
+    externalAdReply :{
+    mediaUrl: sig,
+    mediaType: 2,
+    description: author, 
+    title: ucapan,
+    body: wm, //`${fileSizeH}`,
+    thumbnail: await(await fetch(logo)).buffer(),
+    sourceUrl: sgc
+     }}
+   })
+   try {
+   var a = await instagramdl(args[0])
+   let urla = a[0].url
+   let urlshort = await(await axios.get(`https://tinyurl.com/api-create.php?url=${urla}`)).data
+   for(let { thumbnail, url } of a)
+   conn.sendMedia(m.chat, url, null, {mentions: [m.sender], jpegThumbnail: await(await fetch(thumbnail)).buffer(), caption: `🚀 *Link:* ${await(await axios.get(`https://tinyurl.com/api-create.php?url=${url}`)).data}`})
+  } catch {
+   try {
+   var b = await instagramdlv2(args[0])
+   let urlb = b[0].url
+   let urlshort = await(await axios.get(`https://tinyurl.com/api-create.php?url=${urlb}`)).data
+   for(let { thumbnail, url } of b)
+   conn.sendMedia(m.chat, url, null, {mentions: [m.sender], jpegThumbnail: await(await fetch(thumbnail)).buffer(), caption: `🚀 *Link:* ${await(await axios.get(`https://tinyurl.com/api-create.php?url=${url}`)).data}`})
+  } catch {
+   try {
+   var c = await instagramdlv3(args[0])
+   let urlc = c[0].url
+   let urlshort = await(await axios.get(`https://tinyurl.com/api-create.php?url=${urlc}`)).data
+   for(let { thumbnail, url } of c)
+   conn.sendMedia(m.chat, url, null, {mentions: [m.sender], jpegThumbnail: await(await fetch(thumbnail)).buffer(), caption: `🚀 *Link:* ${await(await axios.get(`https://tinyurl.com/api-create.php?url=${url}`)).data}`})
+  } catch {
+   try {
+   var d = await instagramdlv4(args[0])
+   let urld = d[0].url
+   let urlshort = await(await axios.get(`https://tinyurl.com/api-create.php?url=${urld}`)).data
+   for(let { thumbnail, url } of d)
+   conn.sendMedia(m.chat, url, null, {mentions: [m.sender], jpegThumbnail: await(await fetch(thumbnail)).buffer(), caption: `🚀 *Link:* ${await(await axios.get(`https://tinyurl.com/api-create.php?url=${url}`)).data}`})
+  } catch {
+   try {
+   var e = igdl(args[0])
+   let urle = e[0].url
+   let urlshort = await(await axios.get(`https://tinyurl.com/api-create.php?url=${urle}`)).data
+   for (let { type, fileType, url, downloadUrl, preview } of e) 
+   conn.sendMedia(m.chat, url, null, {mentions: [m.sender], jpegThumbnail: await(await fetch(preview)).buffer(), caption: `🚀 *Link:* ${await(await axios.get(`https://tinyurl.com/api-create.php?url=${url}`)).data}`})
+  } catch {
+   throw eror 
+     }
+    }
+   }
+  }
+ }
 }
-handler.help = ['ig'].map(v => v + ' <url>')
+handler.help = ['instagram'].map(v => v + ' <url>')
 handler.tags = ['downloader']
+handler.command = /^(ig|instagram)(dl)?(downloa?d(er)?)?$/i
 
-handler.command = /^(instagram|ig(dl)?)$/i
+handler.limit = true
 
 export default handler

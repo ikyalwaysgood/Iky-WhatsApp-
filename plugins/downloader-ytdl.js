@@ -1,37 +1,33 @@
-import { 
-    youtubedl,
-    youtubedlv2 
-} from '@bochilteam/scraper'
 
-import fetch from 'node-fetch'
-
-
-let handler = async (m, { conn, args, isPrems, isOwner }) => {
+let handler = async (m, { conn, args, usedPrefix, command, isPrems, isOwner }) => {
     if (!args[0]) return m.reply('Link?')
     const sections = [
 	{
 	title: "🎙️ Audio",
 	rows: [
-	    {title: "Mp3", rowId: `-getaud ${args[0]} audio`}
+	    {title: "Get Audio", rowId: `${usedPrefix}getaud ${args[0]} audio`},
+	    {title: "Yt Audio", rowId: `${usedPrefix}yta ${args[0]}`},
+	    {title: "Yt Audio Yes", rowId: `${usedPrefix}yta ${args[0]} yes`}
 	]
     },
     {
 	title: "🎥 Video",
 	rows: [
-	    {title: "1080p", rowId: `-getvid ${args[0]} 1080`},
-{title: "720p", rowId: `-getvid ${args[0]} 720`},
-{title: "480p", rowId: `-getvid ${args[0]} 480`},
-{title: "360p", rowId: `-getvid ${args[0]} 360`}
-
+	    {title: "Get Video 1080p", rowId: `${usedPrefix}getvid ${args[0]} 1080`},
+{title: "Get Video 720p", rowId: `${usedPrefix}getvid ${args[0]} 720`},
+{title: "Get Video 480p", rowId: `${usedPrefix}getvid ${args[0]} 480`},
+{title: "Get Video 360p", rowId: `${usedPrefix}getvid ${args[0]} 360`},
+{title: "Yt Mp4", rowId: `${usedPrefix}ytmp4 ${args[0]}`},
+{title: "Yt Mp4 Yes", rowId: `${usedPrefix}ytmp4 ${args[0]} yes`}
 	]
     },
    
 ]
 
 const listMessage = {
-  text: `›  ᴩʟᴇᴀꜱᴇ ꜱᴇʟᴇᴄᴛ yᴏᴜʀ ᴍᴇᴅɪᴀ ᴛyᴩᴇ...`,
+  text: `${htjava}  ᴩʟᴇᴀꜱᴇ ꜱᴇʟᴇᴄᴛ yᴏᴜʀ ᴍᴇᴅɪᴀ ᴛyᴩᴇ...`,
   footer: wm,
-  title: htki + " 📥 𝚈𝚘𝚞𝚝𝚞𝚋𝚎 𝙳𝚘𝚠𝚗𝚕𝚘𝚊𝚍𝚎𝚛 " + htki,
+  title: " 📥 𝚈𝚘𝚞𝚝𝚞𝚋𝚎 𝙳𝚘𝚠𝚗𝚕𝚘𝚊𝚍𝚎𝚛 ",
   buttonText: "Click Here !",
   sections
 }
