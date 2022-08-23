@@ -35,18 +35,7 @@ let pp = await conn.profilePictureUrl(who).catch(_ => hwaifu.getRandom())
      let math = max - xp
      let mim_ = ["application/vnd.openxmlformats-officedocument.presentationml.presentation","application/vnd.openxmlformats-officedocument.spreadsheetml.sheet","application/vnd.openxmlformats-officedocument.wordprocessingml.document","text/rtf"]
      let lin_ = ["https://www.youtube.com","https://www.instagram.com","https://www.facebook.com"]
-     let knights = await(await import('knights-canvas'))
-     let image = await new knights.Rank()
-    .setAvatar(pp) 
-    .setUsername(name) 
-    .setBg(hwaifu.getRandom())
-    .setNeedxp(math) 
-    .setCurrxp(exp) 
-    .setLevel(level) 
-    .setRank("https://i.ibb.co/Wn9cvnv/FABLED.png") 
-    .toAttachment();
-  let data = image.toBuffer();
-  let cap = `*${htki} Information ${htka}*
+     let cap = `*${htki} Information ${htka}*
 
 *🏷️ Nama:* *${name}*
 *💲 Money:* *RP* ${money}
@@ -65,7 +54,7 @@ let weem = `📮 *Note:* Jika menemukan bug, error atau kesulitan dalam pengguna
     description: wm, 
     title: '👋 Hai, ' + name,
     body: botdate,
-    thumbnail: data,
+    thumbnail: knimg,
     sourceUrl: sgc
      }}
   })

@@ -1,8 +1,11 @@
 import cheerio from 'cheerio'
 import fetch from 'node-fetch'
-import axios from "axios"
+import axios from 'axios'
 import { instagramdl, instagramdlv2, instagramdlv3 } from '@bochilteam/scraper'
-let handler = async (m, { conn, args, usedPrefix, command }) => {
+let handler = async (m, { conn, args, text, usedPrefix, command }) => {
+let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender
+let pp = await conn.profilePictureUrl(who).catch(_ => hwaifu.getRandom())
+let name = await conn.getName(who)
  if (!args[0]) throw `uhm.. url nya mana?\n\ncontoh:\n${usedPrefix + command} https://www.instagram.com/p/CH1A1c9J5pY/?utm_medium=copy_link`
  if (args[0].startsWith('https://instagram.com/stories')) throw `sepertinya kamu menggunakan link story, untuk mendownload Instagram Story silahkan gunakan command di bawah\n\n*${usedPrefix}instagramstory <username>*`
  if (!args[0].match(/(https|http):\/\/www.instagram.com\/(p|reel|tv)/gi)) throw `url salah, perintah ini untuk mengunduh post/reel/tv`
@@ -41,6 +44,23 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
    for (let { type, fileType, url, downloadUrl, preview } of e) 
    conn.sendMedia(m.chat, url, null, {mentions: [m.sender], jpegThumbnail: await(await fetch(preview)).buffer(), caption: `🚀 *Link:* ${await(await axios.get(`https://tinyurl.com/api-create.php?url=${url}`)).data}`})
   } catch {
+  try {
+  if (!text) throw '*Masukkan link*\n Example: https://www.instagram.com/p/CIk47s2FMl4/'
+let res = await axios('https://violetics.pw/api/downloader/instagram?apikey=beta&url=' + text)
+let json = res.data
+let dapet = json.result.url
+	let row = Object.values(dapet).map((v, index) => ({
+		title: htjava + '📌 Quality: ' + v.name,
+		description: '\n⌚ Host: ' + json.result.hosting + '\n⏲️ Title: ' + json.result.meta.title + '\n📎 URL: ' + v.url + '\n📌 Source: ' + json.result.meta.source,
+		rowId: usedPrefix + 'get ' + v.url
+	}))
+	let button = {
+		buttonText: `☂️ ${command} Search Disini ☂️`,
+		description: `⚡ Hai ${name}, Silakan pilih ${command} Search di tombol di bawah...\n*Teks yang anda kirim:* ${text}\n\nKetik ulang *${usedPrefix + command}* teks anda untuk mengubah teks lagi`,
+		footerText: wm
+	}
+	return conn.sendListM(m.chat, button, row, m)
+	} catch {
    throw eror 
      }
     }
@@ -55,7 +75,7 @@ handler.limit = true
 
 export default handler
 
-function igdl(url) {
+async function igdl(url) {
     return new Promise(async (resolve, reject) => {
         axios.request({
             url: 'https://www.instagramsave.com/download-instagram-videos.php',

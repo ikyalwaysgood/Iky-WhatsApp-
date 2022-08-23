@@ -1,7 +1,8 @@
 import fetch from 'node-fetch'
+import axios from 'axios'
 import hx from 'hxz-api'
 
-let handler = async (m, { conn, text }) => {
+let handler = async (m, { conn, usedPrefix, text, args, command }) => {
 let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender
 let pp = await conn.profilePictureUrl(who).catch(_ => hwaifu.getRandom())
 let name = await conn.getName(who)
@@ -14,6 +15,25 @@ try {
   conn.sendButtonVid(m.chat, res.media[x].url, caption, author, 'To mp3', '.tomp3', fpayment, adReply)
 	}
 	} catch {
+	try {
+  if (!text) throw '*Masukkan link*\n Example: https://twitter.com/sosmedkeras/status/1499995651240697859?s=20&t=gBiahHhbBT0FxZ3aVa3bJw'
+let res = await axios('https://violetics.pw/api/downloader/twitter?apikey=beta&url=' + text)
+let json = res.data
+let dapet = json.result.url
+	let row = Object.values(dapet).map((v, index) => ({
+		title: htjava + '📌 Quality: ' + v.name,
+		description: '\n⌚ Host: ' + json.result.hosting + '\n⏲️ Title: ' + json.result.meta.title + '\n📎 URL: ' + v.url + '\n📌 Source: ' + json.result.meta.source,
+		rowId: usedPrefix + 'get ' + v.url
+	}))
+	let button = {
+		buttonText: `☂️ ${command} Search Disini ☂️`,
+		description: `⚡ Hai ${name}, Silakan pilih ${command} Search di tombol di bawah...\n*Teks yang anda kirim:* ${text}\n\nKetik ulang *${usedPrefix + command}* teks anda untuk mengubah teks lagi`,
+		footerText: wm
+	}
+	return conn.sendListM(m.chat, button, row, m)
+	} catch {
+   throw eror 
+     }
 	/* Twit */
 await hx.fbdown(`${text}`)
             .then(G => {
@@ -23,6 +43,7 @@ await hx.fbdown(`${text}`)
        ⇆ㅤ◁ㅤ ❚❚ㅤ ▷ㅤ↻`, author, 'To mp3', '.tomp3', fpayment, adReply)
             })
 	}
+	
 }
 handler.help = ['twitter']
 handler.tags = ['downloader']

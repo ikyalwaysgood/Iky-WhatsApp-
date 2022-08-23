@@ -10,8 +10,7 @@ let handler= async (m, { args, usedPrefix, command }) => {
         followingH,
         postsH,
     } = await instagramStalk(args[0])
-await conn.sendHydrated(m.chat, `
-${name} *(${username})*
+await conn.sendHydrated(m.chat, `${name} *(${username})*
 https://instagram.com/${username.replace(/^@/, '')}
 *${followersH}* Followers
 *${followingH}* Following

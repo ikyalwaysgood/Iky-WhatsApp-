@@ -7,7 +7,7 @@ let handler = async (m, { conn, args, text, usedPrefix, command }) => {
 let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender
 let name = await conn.getName(who)
 let frep = { quoted: fakes, contextInfo: adReply}
-let imgr = thumbnailUrl.getRandom()
+let imgr = flaaa.getRandom()
 
 let urut = text.split`|`
   let one = urut[1]

@@ -1,5 +1,5 @@
 import fetch from 'node-fetch'
-import axios from "axios"
+import axios from 'axios'
 let handler = async (m, { conn, args }) => {
   if (!args[0]) throw 'Uhm...url nya mana?'
 let txt = `🚀 *Link:* ${await(await axios.get(`https://tinyurl.com/api-create.php?url=${args[0]}`)).data}` 

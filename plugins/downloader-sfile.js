@@ -1,7 +1,12 @@
 import cheerio from 'cheerio'
 import fetch from 'node-fetch'
+import axios from 'axios'
 
-let handler = async (m, { conn, text }) => {
+let handler = async (m, { conn, usedPrefix, text, args, command }) => {
+let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender
+let pp = await conn.profilePictureUrl(who).catch(_ => hwaifu.getRandom())
+let name = await conn.getName(who)
+try {
 	if (text.match(/(https:\/\/sfile.mobi\/)/gi)) {
 		let res = await sfileDl(text)
 		if (!res) throw 'Error :/'
@@ -14,6 +19,12 @@ let handler = async (m, { conn, text }) => {
 		res = res.map((v) => `*Title:* ${v.title}\n*Size:* ${v.size}\n*Link:* ${v.link}`).join`\n\n`
 		m.reply(res)
 	} else throw 'Input Query / Sfile Url!'
+	} catch {
+	if (!text) throw '*Masukkan link*\n Example: https://sfile.mobi/1FjpfJwHxC07'
+let res = await axios('https://violetics.pw/api/downloader/sfile?apikey=beta&url=' + text)
+let json = res.data
+conn.sendMessage(m.chat, { document: { url: json.result.url }, fileName: json.result.title, mimetype: null }, { quoted: m })
+	}
 }
 handler.help = ['sfile']
 handler.tags = ['downloader']

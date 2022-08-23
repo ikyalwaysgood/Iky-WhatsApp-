@@ -1,5 +1,6 @@
 let limit = 80
 import fetch from 'node-fetch'
+import axios from 'axios'
 import { youtubeSearch, youtubedl, youtubedlv2, youtubedlv3 } from '@bochilteam/scraper';
 let handler = async (m, { conn, groupMetadata, usedPrefix, text, args, command, isPrems, isOwner }) => {
 let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender
@@ -58,7 +59,24 @@ try {
      }}
   })
   } catch {
-let res = await fetch(`https://rest-beni.herokuapp.com/api/youtube?url=${args[0]}`)
+  try {
+if (!text) throw '*Masukkan link*\n Example: https://www.youtube.com/watch?v=eZskFo64rs8'
+let res = await axios('https://violetics.pw/api/downloader/youtube?apikey=beta&url=' + text)
+let json = res.data
+let dapet = json.result.url
+	let row = Object.values(dapet).map((v, index) => ({
+		title: htjava + '📌 Quality: ' + v.subname,
+		description: '\n⌚ Host: ' + json.result.hosting + '\n⏲️ Title: ' + json.result.meta.title + '\n📎 URL: ' + v.url + '\n📌 Source: ' + json.result.meta.source + '\n📌 Duration: ' + json.result.meta.duration,
+		rowId: usedPrefix + 'get ' + v.url
+	}))
+	let button = {
+		buttonText: `☂️ ${command} Search Disini ☂️`,
+		description: `⚡ Hai ${name}, Silakan pilih ${command} Search di tombol di bawah...\n*Teks yang anda kirim:* ${text}\n\nKetik ulang *${usedPrefix + command}* teks anda untuk mengubah teks lagi`,
+		footerText: wm
+	}
+	return conn.sendListM(m.chat, button, row, m)
+  } catch {
+  let res = await fetch(`https://rest-beni.herokuapp.com/api/youtube?url=${args[0]}`)
 let v = await res.json()
 let caption = `*${htki} YOUTUBE ${htka}*
 

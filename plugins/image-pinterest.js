@@ -1,4 +1,5 @@
 import fetch from 'node-fetch'
+import axios from 'axios'
 import { pinterest } from '@bochilteam/scraper'
 import { readFileSync } from 'fs'
 
@@ -26,7 +27,8 @@ const sections = [
 {title: em.getRandom() + " Pinterest 6", rowId: usedPrefix + command + ' pinterest6 |' + text},
 {title: em.getRandom() + " Pinterest 7", rowId: usedPrefix + command + ' pinterest7 |' + text},
 {title: em.getRandom() + " Pinterest 8", rowId: usedPrefix + command + ' pinterest8 |' + text},
-{title: em.getRandom() + " Pinterest 9", rowId: usedPrefix + command + ' pinterest9 |' + text}
+{title: em.getRandom() + " Pinterest 9", rowId: usedPrefix + command + ' pinterest9 |' + text},
+{title: em.getRandom() + " Pinterest 10", rowId: usedPrefix + command + ' pinterest10 |' + text}
 	]
     }
 ]
@@ -259,8 +261,31 @@ await conn.sendButton(m.chat, caption, wm, x9.getRandom(), [
   })
 break
 
+case 'pinterest10':
+let js10 = await fetch(`https://violetics.pw/api/downloader/pinterest2?apikey=beta&url=${one}`)
+let jp10 = js10.data
+let x10 = jp10.result
+await conn.sendButton(m.chat, caption, wm, x10, [
+      ['Pinterest', usedPrefix + command + ' ' + one]
+    ], m, {
+            fileLength: fsizedoc,
+            seconds: fsizedoc,
+            jpegThumbnail: Buffer.alloc(0), contextInfo: {
+          externalAdReply :{
+    mediaUrl: sig,
+    mediaType: 2,
+    description: wm, 
+    title: '👋 Hai, ' + name + ' ' + ucapan,
+    body: botdate,
+    thumbnail: await(await fetch(pp)).buffer(),
+    sourceUrl: sgc
+     }}
+  })
+break
+
+
                        default:
-                        return conn.sendMessage(m.chat, listMessage, {quoted: fgif})
+                        return conn.sendMessage(m.chat, listMessage, {quoted: fakes})
                 }
         }
     } catch (e) {

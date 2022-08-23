@@ -4,8 +4,6 @@ import fetch from 'node-fetch'
 import fs from 'fs'
 
 let handler = async(m, { conn, groupMetadata, usedPrefix, text, args, isPrems, isOwner, command }) => {
-let frep = { contextInfo: { externalAdReply: {title: global.wm, body: global.author, sourceUrl: snh, thumbnail: fs.readFileSync('./thumbnail.jpg')}}}
-let fdoc = {quoted:{key : {participant : '0@s.whatsapp.net'},message: {documentMessage: {title: `${command}`}}}}
 let imgr = flaaa.getRandom()
 
 
@@ -63,7 +61,7 @@ ${usedPrefix + command} pinterest |wibu
 `
 conn.sendButton(m.chat, caption, wm, null, [
                 ['Menu', `${usedPrefix}menu`]
-            ], m, fdoc)
+            ], m, { quoted: fakes })
             }
             
 if (command) {
@@ -102,7 +100,7 @@ case 'vietnam':
         let ass = `*Result:* ${args[0]}`
         await conn.sendButton(m.chat, ass, wm, as, [
                 ['Next', `${usedPrefix + command} ${args[0]}`]
-            ], m, fdoc)
+            ], m, { quoted: fakes })
             break
             case 'alphacoders':
             case 'wallpapercave':
@@ -117,7 +115,7 @@ case 'vietnam':
         let wll = `*Result:* ${args[0]}`
         await conn.sendButton(m.chat, wll, wm, wl, [
                 ['Next', `${usedPrefix + command} ${args[0]}`]
-            ], m, fdoc)
+            ], m, { quoted: fakes })
             break
             case 'pinterest':
             if (!one) throw `Contoh penggunaan ${usedPrefix + command} ${args[0]} |query`
@@ -127,7 +125,7 @@ case 'vietnam':
         let pnnnn = `*Result:* ${one}`
         await conn.sendButton(m.chat, pnnnn, wm, pnnn.getRandom(), [
                 ['Next', `${usedPrefix + command} ${one}`]
-            ], m, fdoc)
+            ], m, { quoted: fakes })
             break
             case 'sstick':
             if (!one) throw `Contoh penggunaan ${usedPrefix + command} ${args[0]} |query`
@@ -138,7 +136,7 @@ case 'vietnam':
 `
         await conn.sendButton(m.chat, sppp, wm, null, [
                 ['Next', `${usedPrefix + command} ${one}`]
-            ], m, fdoc)
+            ], m, { quoted: fakes })
             break
             case 'google':
             if (!one) throw `Contoh penggunaan ${usedPrefix + command} ${args[0]} |query`
@@ -149,7 +147,7 @@ case 'vietnam':
 `
         await conn.sendButton(m.chat, gooo, wm, null, [
                 ['Next', `${usedPrefix + command} ${one}`]
-            ], m, fdoc)
+            ], m, { quoted: fakes })
             break
             case 'hmod':
             if (!one) throw `Contoh penggunaan ${usedPrefix + command} ${args[0]} |query`
@@ -160,7 +158,7 @@ case 'vietnam':
 `
         await conn.sendButton(m.chat, hmmm, wm, hmm.icon, [
                 ['Next', `${usedPrefix + command} ${one}`]
-            ], m, fdoc)
+            ], m, { quoted: fakes })
             break
             case 'wiki':
             if (!one) throw `Contoh penggunaan ${usedPrefix + command} ${args[0]} |query`
@@ -171,7 +169,7 @@ case 'vietnam':
 `
         await conn.sendButton(m.chat, wkkk, wm, wkk.thumb, [
                 ['Next', `${usedPrefix + command} ${one}`]
-            ], m, fdoc)
+            ], m, { quoted: fakes })
             break
             case 'milf':
             case 'waifu':
@@ -186,7 +184,7 @@ case 'vietnam':
 `
         await conn.sendButton(m.chat, riimg, wm, rimg, [
                 ['Next', `${usedPrefix + command} ${args[0]}`]
-            ], m, fdoc)
+            ], m, { quoted: fakes })
             break
             case 'ppcouple':
             if (!args[0]) throw `Contoh penggunaan ${usedPrefix + command} ${args[0]} `
@@ -195,11 +193,11 @@ case 'vietnam':
         let cwo = `*Cwok:* ${args[0]}`
         await conn.sendButton(m.chat, cwo, wm, ppc.male, [
                 ['Next', `${usedPrefix + command} ${args[0]}`]
-            ], m, fdoc)
+            ], m, { quoted: fakes })
             let cwe = `*Cwok:* ${args[0]}`
         await conn.sendButton(m.chat, cwe, wm, ppc.female, [
                 ['Next', `${usedPrefix + command} ${args[0]}`]
-            ], m, fdoc)
+            ], m, { quoted: fakes })
             break
             case 'quotes':
             let qt = await fetch(`https://api.zacros.my.id/randomtext/quotes`)
@@ -209,7 +207,7 @@ case 'vietnam':
 `
         await conn.sendButton(m.chat, qttt, wm, null, [
                 ['Next', `${usedPrefix + command}`]
-            ], m, fdoc)
+            ], m, { quoted: fakes })
             break
             case 'quotesanime':
         let qm = await fetch(`https://api.zacros.my.id/randomtext/quotesanime`)
@@ -221,7 +219,7 @@ case 'vietnam':
 `
         await conn.sendButton(m.chat, qmmm, qmm.result.date, qmm.result.img, [
                 ['Next', `${usedPrefix + command}`]
-            ], m, fdoc)
+            ], m, { quoted: fakes })
             break
             case 'faktaunik':
             case 'fml':
@@ -235,7 +233,7 @@ case 'vietnam':
         let faaa = `*Result:* ${faa.result}`
         await conn.sendButton(m.chat, faaa, wm, null, [
                 ['Next', `${usedPrefix + command}`]
-            ], m, fdoc)
+            ], m, { quoted: fakes })
             break
 }
 }

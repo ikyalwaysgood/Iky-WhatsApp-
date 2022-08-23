@@ -2,63 +2,41 @@ import cheerio from 'cheerio'
 import fetch from 'node-fetch'
 import axios from 'axios'
 
-let handler = async (m, { conn, text }) => {
+let handler = async (m, { command, text, conn }) => {
   if (!text) throw 'Input username'
-  let res = await igStalk(text)
+try {
+let res = await igStalk(text)
   if (!res) throw res
-  let caption = `
-*Name:* ${res.name}
+conn.sendButton(m.chat, `*Name:* ${res.name}
 *Username:* ${res.username}
 *Followers:* ${res.followersH}
 *Following:* ${res.followingH}
 *Posts:* ${res.postsH}
 *Bio:*
 ${res.description}
-`.trim()
-  if (res.profilePic) return conn.sendMessage(m.chat, { image: { url: res.profilePic }, caption }, { quoted: m })
-  m.reply(caption)
-  
-  try {
-  await axios.get('https://violetics.pw/api/stalk/instagram?apikey=beta&username=' + text).then(({ gg }) => {
-  let cap = `${gg.result.id}
-    ${gg.result.username}
-    ${gg.result['is_private']}
-    ${gg.result['profile_pic_url']}
-    ${gg.result.biography}
-    ${gg.result['full_name']}
-    ${gg.result['edge_owner_to_timeline_media'].count}
-    ${gg.result['edge_followed_by'].count}
-    ${gg.result['edge_follow'].count}
-    ${gg.result['profile_pic_url_signature'].expires}
-    ${gg.result['profile_pic_url_signature'].signature}
-    `
-                    }
-                    m.reply(cap)
-                    } catch {
-                    await axios
-                .get('https://violetics.pw/api/stalk/instagram?apikey=beta&username=' + text)
-                .then(({ result }) => {
-                    let cp = `${result.result.id}
-    ${result.result.username}
-    ${result.result.is_private}
-    ${result.result.profile_pic_url}
-    ${result.result.biography}
-    ${result.result.full_name}
-    ${result.result.edge_owner_to_timeline_media.count}
-    ${result.result.edge_followed_by.count}
-    ${result.result.edge_follow.count}
-    ${result.result.profile_pic_url_signature.expires}
-    ${result.result.profile_pic_url_signature.signature}
-    `
-                    }
-                    m.reply(cp)
-                    }
+`.trim(), author, res.profilePic, [['🔄 NEXT 🔄', `/${command}`]], m)
+  } catch {
+  let res = await axios('https://violetics.pw/api/stalk/instagram?apikey=beta&type=json&username=' + text)
+let json = res.data
+let v = json.result
+conn.sendButton(m.chat, `*ID:* ${v.id}
+*Username:* ${v.username}
+*Private:* ${v.is_private}
+*Biography:* ${v.biography}
+*Full name:* ${v.full_name}
+*Timeline media:* ${v.edge_owner_to_timeline_media.count}
+*Followed by:* ${v.edge_followed_by.count}
+*Follow:* ${v.edge_follow.count}
+*Signature expires:* ${v.profile_pic_url_signature.expires}
+*Signature:* ${v.profile_pic_url_signature.signature}
+`.trim(), author, v.profile_pic_url, [['🔄 NEXT 🔄', `/${command}`]], m)
+}
 
 }
 handler.help = ['igstalk']
 handler.tags = ['tools']
 handler.alias = ['igstalk', 'stalkig']
-handler.command = /^(igstalk|stalkig)$/i
+handler.command = /^(igs|igstalk|stalkig)$/i
 
 export default handler
 
