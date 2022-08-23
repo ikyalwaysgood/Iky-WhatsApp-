@@ -8,6 +8,23 @@ export async function all(m, { conn, text, args, usedPrefix, command }) {
     let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender
     let name = await conn.getName(who)
 	let pp
+	  
+  // Fake Random
+        let qfa = global.fimg
+        let qfb = global.fimgv
+        let qfc = global.fpayment
+        let qfd = global.ftroli
+        let qfe = global.fkontak
+        let qff = global.fvn
+        let qfg = global.fvid
+        let qfh = global.ftextt
+        let qfi = global.fliveLoc
+        let qfj = global.fliveLoc2
+        let qfk = global.ftoko
+        let qfl = global.fdocs
+        let qfm = global.fgclink
+        let qfn = global.fgif
+        
 	try {
 		pp = await this.profilePictureUrl(m.sender, 'image')
 	} catch (e) {
@@ -226,11 +243,9 @@ export async function all(m, { conn, text, args, usedPrefix, command }) {
     }
   }
   }
-  
-  // Fake Random
-        let pft = [global.fimg, global.fimgv, global.fpayment, global.ftroli, global.fkontak, global.fvn, global.fvid, global.ftextt, global.fliveLoc, global.fliveLoc2, global.ftoko, global.fdocs, global.fgclink, global.fgif]
-		global.fakes = pft.getRandom()
-		
+  // Fake RANDOM
+		let pft = [qfa, qfb, qfc, qfd, qfe, qff, qfg, qfh, qfi, qfj, qfk, qfl, qfm, qfn]
+        global.fakes = pft.getRandom()
 		// Fake Knights
 		let knights = await(await import('knights-canvas'))
 		let imagea = await new knights.Jo()
