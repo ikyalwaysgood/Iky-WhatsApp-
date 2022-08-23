@@ -3,10 +3,10 @@
 import fs from 'fs'
 import fetch from 'node-fetch'
 import moment from 'moment-timezone'
-let handler = m => m
-handler.all = async function (m, { conn, text, args, usedPrefix, command }) {
+import knights from 'knights-canvas'
+export async function all(m) {
     let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender
-    let name = await conn.getName(who)
+    let name = await this.getName(who)
 	let pp
 	try {
 		pp = await this.profilePictureUrl(m.sender, 'image')
@@ -222,10 +222,9 @@ handler.all = async function (m, { conn, text, args, usedPrefix, command }) {
    }
   }
   // Fake Random
-        let pft = ["fimg","fimgv","fpayment","ftroli","fkontak","fvn","fvid","ftextt","fliveLoc","fliveLoc2","ftoko","fdocs","fgclink","fgif"]
+        let pft = [global.fimg, global.fimgv, global.fpayment, global.ftroli, global.fkontak, global.fvn, global.fvid, global.ftextt, global.fliveLoc, global.fliveLoc2, global.ftoko, global.fdocs, global.fgclink, global.fgif]
 		let pdoc = ["application/vnd.openxmlformats-officedocument.presentationml.presentation","application/vnd.openxmlformats-officedocument.spreadsheetml.sheet","application/vnd.openxmlformats-officedocument.wordprocessingml.document","application/vnd.ms-excel","application/msword","application/pdf","text/rtf"]
 		// Fake Knights
-		let knights = await(await import('knights-canvas'))
 		let imagea = await new knights.Jo()
     .setImage(pp)
     .toBuild();
@@ -244,14 +243,13 @@ handler.all = async function (m, { conn, text, args, usedPrefix, command }) {
     .toAttachment();
   let datad = imaged.toBuffer();
   let kn =  [dataa, datab, datac, datad]
-        // Doc
+        // FAKES
         global.doc = pdoc.getRandom()
 		global.fakes = pft.getRandom()
 		global.knimg = kn.getRandom()
 		
  }
 }
-export default handler 
 
 function ucapan() {
     const time = moment.tz('Asia/Jakarta').format('HH')
