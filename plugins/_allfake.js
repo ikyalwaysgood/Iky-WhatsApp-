@@ -4,9 +4,9 @@ import fs from 'fs'
 import fetch from 'node-fetch'
 import moment from 'moment-timezone'
 
-let handler = m => m
-handler.all = async function (m) {
-    let name = await conn.getName(m.sender) 
+export async function all(m, { conn, text, args, usedPrefix, command }) {
+    let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender
+    let name = await conn.getName(who)
 	let pp
 	try {
 		pp = await this.profilePictureUrl(m.sender, 'image')
@@ -255,8 +255,6 @@ handler.all = async function (m) {
 		
 	}
 }
-
-export default handler 
 
 function ucapan() {
     const time = moment.tz('Asia/Jakarta').format('HH')

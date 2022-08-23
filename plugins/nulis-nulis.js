@@ -4,7 +4,7 @@ import { spawn } from 'child_process'
 
 // Font By MFarelS:V
 let fontPath = 'src/font/Zahraaa.ttf'
-let handler = async (m, { conn, args }) => {
+let handler = async (m, { conn, args, text }) => {
     if (!global.support.convert &&
         !global.support.magick &&
         !global.support.gm) return handler.disabled = true // Disable if doesnt support
@@ -12,7 +12,7 @@ let handler = async (m, { conn, args }) => {
     let d = new Date()
     let tgl = d.toLocaleDateString('id-Id')
     let hari = d.toLocaleDateString('id-Id', { weekday: 'long' })
-    let teks = args.join` `
+    let teks = text.replace(/['.']/ig, '.\n')
     // conn.reply(m.chat, util.format({fontPath, inputPath, outputPath, tgl, hari, teks}), m)
     let bufs = []
     const [_spawnprocess, ..._spawnargs] = [...(global.support.gm ? ['gm'] : global.support.magick ? ['magick'] : []),
