@@ -4,7 +4,7 @@
 
 
 </p>
-<h1 align="center">HinataBot - MD</h1>
+<h1 align="center">PROSES BOT</h1>
 <p align="center">
   <a href="https://github.com/AyGemuy/HinataBot"><img src="http://readme-typing-svg.herokuapp.com?color=FFFFFF&center=true&vCenter=true&multiline=false&lines=HinataBot+Wudysoft+BOT+Multi+Device;Base+ori+by+BochilGaming;Recode+By+Wudysoft;Give+star+and+forks+this+Repo+:D;Follow+My+Github" alt="UwU">
 </p>
